@@ -4,7 +4,10 @@ const Navbar = () => {
   return (
     <header className="header py-10 flex justify-between">
       <div className="logo">
-        <Link to="/" className="hover:text-cyan-500 font-semibold duration-500">
+        <Link
+          to="/"
+          className="hover:text-cyan-500 text-xl font-semibold duration-500"
+        >
           envelopee
         </Link>
       </div>
