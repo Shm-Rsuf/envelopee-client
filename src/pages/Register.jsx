@@ -1,4 +1,6 @@
 import { useState } from "react";
+import Button from "../components/Button";
+import FormControl from "../components/FormControl";
 import SectionTitle from "../components/SectionTitle";
 
 const Register = () => {
@@ -10,31 +12,50 @@ const Register = () => {
 
   const handleRegister = (e) => {
     e.preventDefault();
+
+    console.log(formFields);
+
+    //state clear
+    setFormFields({
+      name: "",
+      email: "",
+      password: "",
+    });
   };
 
   return (
-    <div className="register flex flex-col justify-center items-center">
+    <div className="register flex flex-col justify-center items-center mt-10">
       <form onSubmit={handleRegister} className="flex flex-col gap-5">
         <SectionTitle title={"Register..."} />
 
-        <div className="form-control flex flex-col gap-2">
-          <label
-            htmlFor="name"
-            className="cursor-pointer hover:text-cyan-500 duration-300"
-          >
-            Name
-          </label>
-          <input
-            type="text"
-            id="name"
-            placeholder="Enter your name"
-            value={formFields.name}
-            onChange={(e) =>
-              setFormFields({ ...formFields, name: e.target.value })
-            }
-            className="border border-cyan-200 py-2 px-4 w-[20rem] outline-none rounded focus:border-cyan-500 duration-300"
-          />
-        </div>
+        <FormControl
+          label="name"
+          labelInner="Name"
+          inputType="text"
+          placeholder="Enter your name"
+          formFields={formFields}
+          setFormFields={setFormFields}
+        />
+
+        <FormControl
+          label="email"
+          labelInner="Email"
+          inputType="email"
+          placeholder="Enter your email"
+          formFields={formFields}
+          setFormFields={setFormFields}
+        />
+
+        <FormControl
+          label="password"
+          labelInner="Password"
+          inputType="password"
+          placeholder="Enter your password"
+          formFields={formFields}
+          setFormFields={setFormFields}
+        />
+
+        <Button text="Register" submit />
       </form>
     </div>
   );
