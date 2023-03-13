@@ -2,6 +2,7 @@ import { useState } from "react";
 import Button from "../components/Button";
 import FormControl from "../components/FormControl";
 import SectionTitle from "../components/SectionTitle";
+import { useSignup } from "../hooks/useSignup";
 
 const Register = () => {
   const [formFields, setFormFields] = useState({
@@ -10,17 +11,19 @@ const Register = () => {
     password: "",
   });
 
-  const handleRegister = (e) => {
+  const { signup, isLoading, error } = useSignup();
+
+  const handleRegister = async (e) => {
     e.preventDefault();
 
-    console.log(formFields);
+    await signup(formFields.name, formFields.email, formFields.password);
 
     //state clear
-    setFormFields({
-      name: "",
-      email: "",
-      password: "",
-    });
+    // setFormFields({
+    //   name: "",
+    //   email: "",
+    //   password: "",
+    // });
   };
 
   return (
@@ -56,6 +59,11 @@ const Register = () => {
         />
 
         <Button text="Register" submit />
+        {error && (
+          <p className="bg-rose-50 text-rose-500 py-2 px-4 border rounded border-rose-500">
+            {error}
+          </p>
+        )}
       </form>
     </div>
   );
