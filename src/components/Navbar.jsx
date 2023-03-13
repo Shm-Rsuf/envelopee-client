@@ -1,10 +1,16 @@
+import React from "react";
 import { Link } from "react-router-dom";
 import { useAuthContext } from "../hooks/useAuthContext";
 import Button from "./Button";
 
 const Navbar = () => {
-  const { user } = useAuthContext();
-  // console.log(user);
+  const { user, dispatch } = useAuthContext();
+
+  // Logout handler
+  const handleLogout = () => {
+    dispatch({ type: "LOGOUT" });
+  };
+
   return (
     <header className="header py-10 flex justify-between">
       <div className="logo">
@@ -38,7 +44,7 @@ const Navbar = () => {
               Logged in as{" "}
               <span className="text-cyan-500 capitalize">{user.name}</span>
             </p>
-            <Button text="Logout" logout />
+            <Button handleLogout={handleLogout} text="Logout" logout />
           </div>
         )}
       </nav>
@@ -46,4 +52,4 @@ const Navbar = () => {
   );
 };
 
-export default Navbar;
+export default React.memo(Navbar);
