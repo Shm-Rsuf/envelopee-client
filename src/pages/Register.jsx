@@ -1,3 +1,4 @@
+import React from "react";
 import { useState } from "react";
 import Button from "../components/Button";
 import FormControl from "../components/FormControl";
@@ -69,4 +70,4 @@ const Register = () => {
   );
 };
 
-export default Register;
+export default React.memo(Register);
